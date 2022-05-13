@@ -15,40 +15,6 @@
 ]]></content>
   </entry>
   <entry>
-    <title>Jav8之Supplier</title>
-    <url>/2021/01/11/java8-supplier/</url>
-    <content><![CDATA[<h1 id="supplier-是什么"><a href="#supplier-是什么" class="headerlink" title="supplier 是什么"></a>supplier 是什么</h1><ul>
-<li><p>可以理解为就是一个<strong>容器</strong>，调用 supplier.get()方法就能获取容器中的值，示例代码如下</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test2</span><span class="params">()</span></span>&#123;</span><br><span class="line">  </span><br><span class="line">  DateTimeFormatter dtf = DateTimeFormatter.ofPattern(<span class="string">&quot;yyyy-MM-dd HH:mm:ss&quot;</span>);</span><br><span class="line"></span><br><span class="line">    Supplier&lt;LocalDateTime&gt; s = () -&gt; LocalDateTime.now();</span><br><span class="line">    LocalDateTime time = s.get();</span><br><span class="line"></span><br><span class="line">    System.out.println(time);</span><br><span class="line"></span><br><span class="line">    Supplier&lt;String&gt; s1 = () -&gt; dtf.format(LocalDateTime.now());</span><br><span class="line">    String time2 = s1.get();</span><br><span class="line"></span><br><span class="line">    System.out.println(time2);</span><br><span class="line"></span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
-
-
-</li>
-</ul>
-<ul>
-<li><p>supplier 中还扩展 了其他的接口实现例如 IntSupplier 、DoubleSupplier 、LongSupplier 、BooleanSupplier 使用跟 Supplier 无其他差别</p>
-</li>
-<li><p>使用场景 2 就是配合其他方法使用例如下面的代码</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test_Supplier2</span><span class="params">()</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    Stream&lt;Integer&gt; stream = Stream.of(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">4</span>);</span><br><span class="line">    <span class="comment">//返回一个optional对象</span></span><br><span class="line">    Optional&lt;Integer&gt; first = stream.filter(i -&gt; i &gt; <span class="number">4</span>)</span><br><span class="line">            .findFirst();</span><br><span class="line"></span><br><span class="line">    <span class="comment">//optional对象有需要Supplier接口的方法</span></span><br><span class="line">    <span class="comment">//orElse，如果first中存在数，就返回这个数，如果不存在，就放回传入的数</span></span><br><span class="line">    System.out.println(first.orElse(<span class="number">1</span>));</span><br><span class="line">    System.out.println(first.orElse(<span class="number">7</span>));</span><br><span class="line"></span><br><span class="line">    System.out.println(<span class="string">&quot;********************&quot;</span>);</span><br><span class="line"></span><br><span class="line">    Supplier&lt;Integer&gt; supplier = ()-&gt;<span class="number">1</span>;</span><br><span class="line">    System.out.println(supplier.get());</span><br><span class="line"></span><br><span class="line">    <span class="comment">//orElseGet，如果first中存在数，就返回这个数，如果不存在，就返回supplier返回的值</span></span><br><span class="line">    System.out.println(first.orElseGet(supplier));</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure></li>
-<li><p>源码如下</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 接口很简单就只有一个 get()方法,用于返回 T 对象</span></span><br><span class="line"></span><br><span class="line"><span class="meta">@FunctionalInterface</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Supplier</span>&lt;<span class="title">T</span>&gt; </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * Gets a result.</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> a result</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function">T <span class="title">get</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-</li>
-</ul>
-<h1 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h1><ul>
-<li><p>supplier 就是一个容器，用来存储数据的</p>
-</li>
-<li><p>通常函数描述符为 () -&gt; T</p>
-</li>
-<li><p>具有延迟创建的特点，只有在使用到的时候才会去执行里面的逻辑</p>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>Java</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Linux shell</title>
     <url>/2022/05/11/shell/</url>
     <content><![CDATA[<h1 id="shell常用命令"><a href="#shell常用命令" class="headerlink" title="shell常用命令"></a>shell常用命令</h1><ul>
@@ -80,6 +46,40 @@
 ]]></content>
       <tags>
         <tag>Linux</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Jav8之Supplier</title>
+    <url>/2021/01/11/java8-supplier/</url>
+    <content><![CDATA[<h1 id="supplier-是什么"><a href="#supplier-是什么" class="headerlink" title="supplier 是什么"></a>supplier 是什么</h1><ul>
+<li><p>可以理解为就是一个<strong>容器</strong>，调用 supplier.get()方法就能获取容器中的值，示例代码如下</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test2</span><span class="params">()</span></span>&#123;</span><br><span class="line">  </span><br><span class="line">  DateTimeFormatter dtf = DateTimeFormatter.ofPattern(<span class="string">&quot;yyyy-MM-dd HH:mm:ss&quot;</span>);</span><br><span class="line"></span><br><span class="line">    Supplier&lt;LocalDateTime&gt; s = () -&gt; LocalDateTime.now();</span><br><span class="line">    LocalDateTime time = s.get();</span><br><span class="line"></span><br><span class="line">    System.out.println(time);</span><br><span class="line"></span><br><span class="line">    Supplier&lt;String&gt; s1 = () -&gt; dtf.format(LocalDateTime.now());</span><br><span class="line">    String time2 = s1.get();</span><br><span class="line"></span><br><span class="line">    System.out.println(time2);</span><br><span class="line"></span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
+
+</li>
+</ul>
+<ul>
+<li><p>supplier 中还扩展 了其他的接口实现例如 IntSupplier 、DoubleSupplier 、LongSupplier 、BooleanSupplier 使用跟 Supplier 无其他差别</p>
+</li>
+<li><p>使用场景 2 就是配合其他方法使用例如下面的代码</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test_Supplier2</span><span class="params">()</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    Stream&lt;Integer&gt; stream = Stream.of(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">4</span>);</span><br><span class="line">    <span class="comment">//返回一个optional对象</span></span><br><span class="line">    Optional&lt;Integer&gt; first = stream.filter(i -&gt; i &gt; <span class="number">4</span>)</span><br><span class="line">            .findFirst();</span><br><span class="line"></span><br><span class="line">    <span class="comment">//optional对象有需要Supplier接口的方法</span></span><br><span class="line">    <span class="comment">//orElse，如果first中存在数，就返回这个数，如果不存在，就放回传入的数</span></span><br><span class="line">    System.out.println(first.orElse(<span class="number">1</span>));</span><br><span class="line">    System.out.println(first.orElse(<span class="number">7</span>));</span><br><span class="line"></span><br><span class="line">    System.out.println(<span class="string">&quot;********************&quot;</span>);</span><br><span class="line"></span><br><span class="line">    Supplier&lt;Integer&gt; supplier = ()-&gt;<span class="number">1</span>;</span><br><span class="line">    System.out.println(supplier.get());</span><br><span class="line"></span><br><span class="line">    <span class="comment">//orElseGet，如果first中存在数，就返回这个数，如果不存在，就返回supplier返回的值</span></span><br><span class="line">    System.out.println(first.orElseGet(supplier));</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure></li>
+<li><p>源码如下</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 接口很简单就只有一个 get()方法,用于返回 T 对象</span></span><br><span class="line"></span><br><span class="line"><span class="meta">@FunctionalInterface</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Supplier</span>&lt;<span class="title">T</span>&gt; </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * Gets a result.</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> a result</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function">T <span class="title">get</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+</li>
+</ul>
+<h1 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h1><ul>
+<li><p>supplier 就是一个容器，用来存储数据的</p>
+</li>
+<li><p>通常函数描述符为 () -&gt; T</p>
+</li>
+<li><p>具有延迟创建的特点，只有在使用到的时候才会去执行里面的逻辑</p>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>Java</tag>
       </tags>
   </entry>
 </search>
