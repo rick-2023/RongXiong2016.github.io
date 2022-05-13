@@ -15,40 +15,6 @@
 ]]></content>
   </entry>
   <entry>
-    <title>Linux shell</title>
-    <url>/2022/05/11/shell/</url>
-    <content><![CDATA[<h1 id="shell常用命令"><a href="#shell常用命令" class="headerlink" title="shell常用命令"></a>shell常用命令</h1><ul>
-<li>echo 命令<ul>
-<li>echo hello word 输出文本</li>
-<li>多行用  “” 保留</li>
-<li>-n 两个命令 输出同一行 echo -n al; echo b</li>
-</ul>
-</li>
-<li>空格<ul>
-<li>多个空格会忽略</li>
-</ul>
-</li>
-<li>分号<ul>
-<li>命令的结束符</li>
-</ul>
-</li>
-<li>命令组合符<ul>
-<li>a &amp;&amp; b ;    a 执行成功则执行 b</li>
-<li>a || b;  a 执行失败则执行 b,a 成功则不会执行 b</li>
-</ul>
-</li>
-<li>type<ul>
-<li>判断命令的来源</li>
-<li>a 看一个命令的所有定义</li>
-</ul>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>Linux</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Jav8之Supplier</title>
     <url>/2021/01/11/java8-supplier/</url>
     <content><![CDATA[<h1 id="supplier-是什么"><a href="#supplier-是什么" class="headerlink" title="supplier 是什么"></a>supplier 是什么</h1><ul>
@@ -80,6 +46,40 @@
 ]]></content>
       <tags>
         <tag>Java</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Linux shell</title>
+    <url>/2022/05/11/shell/</url>
+    <content><![CDATA[<h1 id="shell常用命令"><a href="#shell常用命令" class="headerlink" title="shell常用命令"></a>shell常用命令</h1><ul>
+<li>echo 命令<ul>
+<li>echo hello word 输出文本</li>
+<li>多行用  “” 保留</li>
+<li>-n 两个命令 输出同一行 echo -n al; echo b</li>
+</ul>
+</li>
+<li>空格<ul>
+<li>多个空格会忽略</li>
+</ul>
+</li>
+<li>分号<ul>
+<li>命令的结束符</li>
+</ul>
+</li>
+<li>命令组合符<ul>
+<li>a &amp;&amp; b ;    a 执行成功则执行 b</li>
+<li>a || b;  a 执行失败则执行 b,a 成功则不会执行 b</li>
+</ul>
+</li>
+<li>type<ul>
+<li>判断命令的来源</li>
+<li>a 看一个命令的所有定义</li>
+</ul>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>Linux</tag>
       </tags>
   </entry>
 </search>
